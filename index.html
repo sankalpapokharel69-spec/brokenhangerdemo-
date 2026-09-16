@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Anuj — Personal Brand & Store</title>
+
+    <meta
+        name="description"
+        content="Discover Anuj's personal brand, products, creative work and premium collection."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================
+           ROOT
+        ========================== */
+
+        :root {
+            --bg: #080808;
+            --bg-secondary: #101010;
+            --card: rgba(255,255,255,0.045);
+
+            --text: #f7f7f7;
+            --text-secondary: #a8a8a8;
+
+            --border: rgba(255,255,255,0.10);
+
+            --gold: #d6b36a;
+            --gold-light: #f2d28c;
+
+            --white: #ffffff;
+            --black: #000000;
+
+            --shadow:
+                0 25px 80px rgba(0,0,0,0.45);
+
+            --transition: 0.35s ease;
+        }
+
+        body.light {
+            --bg: #f5f3ee;
+            --bg-secondary: #ffffff;
+            --card: rgba(0,0,0,0.035);
+
+            --text: #111111;
+            --text-secondary: #606060;
+
+            --border: rgba(0,0,0,0.10);
+
+            --shadow:
+                0 25px 70px rgba(0,0,0,0.12);
+        }
+
+
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition:
+                background 0.4s ease,
+                color 0.4s ease;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        section {
+            padding: 110px 6%;
+        }
+
+
+        /* =========================
+           SCROLL PROGRESS
+        ========================== */
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(
+                90deg,
+                var(--gold),
+                var(--gold-light)
+            );
+            z-index: 9999;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 20px 6%;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(8,8,8,0.82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        body.light header.scrolled {
+            background: rgba(245,243,238,0.85);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            font-weight: 700;
+
+            background: linear-gradient(
+                120deg,
+                var(--gold),
+                var(--gold-light)
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-btn,
+        .menu-btn {
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+
+            border-radius: 50%;
+            cursor: pointer;
+
+            transition: var(--transition);
+        }
+
+        .theme-btn:hover,
+        .menu-btn:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,0.88),
+                    rgba(0,0,0,0.45),
+                    rgba(0,0,0,0.2)
+                ),
+                url("https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-6/503276334_122108123120887063_5359418525546589993_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=OO9mQPvjplYQ7kNvwFnjyWk&_nc_oc=Adq_vq3yeYmE3GRWKxmD_Q0SSzDK0zL8sWUI4dIpDuJCTIe9yxLHF0voAOa90DhKxmM&_nc_zt=23&_nc_ht=scontent.fktm19-1.fna&_nc_gid=UFCMfoGyuWozEYBkPHMmXQ&_nc_ss=7b2a8&oh=00_AQJOANHG1WfKsy26-d27lzuwxklsSWq-I3TFQHxZe970ag&oe=6AAFBE2D")
+                center/cover no-repeat;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 70% 45%,
+                    rgba(214,179,106,0.16),
+                    transparent 35%
+                );
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-small {
+            color: var(--gold-light);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(55px, 8vw, 110px);
+            line-height: 0.95;
+
+            max-width: 800px;
+
+            text-shadow:
+                0 10px 40px rgba(0,0,0,0.6);
+        }
+
+        .hero h1 span {
+            color: var(--gold-light);
+        }
+
+        .hero-description {
+            max-width: 560px;
+
+            color: #d2d2d2;
+
+            font-size: 18px;
+            line-height: 1.8;
+
+            margin: 30px 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 15px 25px;
+
+            border-radius: 100px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: var(--transition);
+        }
+
+        .btn-gold {
+            color: #111;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold),
+                    var(--gold-light)
+                );
+
+            box-shadow:
+                0 15px 40px rgba(214,179,106,0.20);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 20px 50px rgba(214,179,106,0.35);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+            transform: translateY(-4px);
+        }
+
+        .hero-profile {
+            position: absolute;
+
+            right: 8%;
+            bottom: 14%;
+
+            width: 210px;
+            height: 210px;
+
+            border-radius: 50%;
+
+            padding: 5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold),
+                    transparent,
+                    var(--gold-light)
+                );
+
+            box-shadow:
+                0 0 80px rgba(214,179,106,0.20);
+
+            z-index: 3;
+        }
+
+        .hero-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #080808;
+        }
+
+
+        /* =========================
+           SECTION HEADER
+        ========================== */
+
+        .section-head {
+            max-width: 700px;
+            margin-bottom: 60px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-head h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(40px, 5vw, 65px);
+            line-height: 1;
+        }
+
+        .section-head p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about-grid {
+            max-width: 1400px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .about-card {
+            padding: 45px;
+
+            border: 1px solid var(--border);
+            background: var(--card);
+
+            border-radius: 25px;
+
+            box-shadow: var(--shadow);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .about-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-info a {
+            color: var(--gold-light);
+        }
+
+
+        /* =========================
+           STATS
+        ========================== */
+
+        .stats {
+            max-width: 1400px;
+            margin: 30px auto 0;
+
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .stat {
+            padding: 30px;
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            text-align: center;
+
+            background: var(--card);
+
+            transition: var(--transition);
+        }
+
+        .stat:hover {
+            transform: translateY(-7px);
+            border-color: var(--gold);
+        }
+
+        .stat strong {
+            display: block;
+
+            font-family: "Playfair Display", serif;
+            font-size: 42px;
+
+            color: var(--gold-light);
+        }
+
+        .stat span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================== */
+
+        .products-section {
+            background: var(--bg-secondary);
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .product-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 20px;
+
+            margin-bottom: 40px;
+        }
+
+        .search-box {
+            width: 300px;
+
+            padding: 14px 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 100px;
+
+            background: var(--card);
+            color: var(--text);
+
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: var(--gold);
+        }
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .product {
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            border: 1px solid var(--border);
+
+            background: var(--card);
+
+            transition: var(--transition);
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+
+            border-color: rgba(214,179,106,0.55);
+
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.3);
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            height: 100%;
+            object-fit: cover;
+
+            transition:
+                transform 0.7s ease;
+        }
+
+        .product:hover img {
+            transform: scale(1.08);
+        }
+
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0,0,0,0.45);
+
+            opacity: 0;
+
+            transition: var(--transition);
+        }
+
+        .product:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            border: 1px solid white;
+
+            color: white;
+            background: rgba(0,0,0,0.4);
+
+            cursor: pointer;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-content h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+        }
+
+        .product-content p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin: 8px 0 18px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .buy-btn {
+            border: 1px solid var(--gold);
+            background: transparent;
+
+            color: var(--gold-light);
+
+            padding: 9px 15px;
+
+            border-radius: 100px;
+
+            cursor: pointer;
+
+            transition: var(--transition);
+        }
+
+        .buy-btn:hover {
+            background: var(--gold);
+            color: #111;
+        }
+
+
+        /* =========================
+           BRAND BANNER
+        ========================== */
+
+        .brand-banner {
+            max-width: 1400px;
+            margin: auto;
+
+            padding: 80px 50px;
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(214,179,106,0.15),
+                    rgba(255,255,255,0.02)
+                );
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+        }
+
+        .brand-banner h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(40px, 6vw, 75px);
+        }
+
+        .brand-banner p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 20px auto 30px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            padding: 50px 6% 30px;
+
+            border-top: 1px solid var(--border);
+
+            background: var(--bg-secondary);
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .footer-brand {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            color: var(--gold-light);
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .socials a {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--border);
+            border-radius: 50%;
+
+            transition: var(--transition);
+        }
+
+        .socials a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            max-width: 1400px;
+            margin: 30px auto 0;
+
+            padding-top: 25px;
+
+            border-top: 1px solid var(--border);
+
+            color: var(--text-secondary);
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           MODAL
+        ========================== */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0,0,0,0.78);
+
+            backdrop-filter: blur(12px);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 5000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            max-width: 850px;
+            width: 100%;
+
+            background: var(--bg-secondary);
+
+            border: 1px solid var(--border);
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,0.6);
+        }
+
+        .modal-image {
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .modal-content {
+            padding: 30px;
+        }
+
+        .modal-content h2 {
+            font-family: "Playfair Display", serif;
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            position: absolute;
+
+            top: 15px;
+            right: 15px;
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            border: 1px solid white;
+
+            background: rgba(0,0,0,0.5);
+
+            color: white;
+
+            cursor: pointer;
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           BACK TO TOP
+        ========================== */
+
+        .top-btn {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            border: 1px solid var(--gold);
+
+            background: var(--bg-secondary);
+            color: var(--gold-light);
+
+            cursor: pointer;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: var(--transition);
+
+            z-index: 900;
+        }
+
+        .top-btn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
+        /* =========================
+           REVEAL ANIMATION
+        ========================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width: 1050px) {
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .hero-profile {
+                right: 5%;
+            }
+        }
+
+
+        @media(max-width: 800px) {
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .nav-links {
+                position: absolute;
+
+                top: 75px;
+                left: 5%;
+                right: 5%;
+
+                padding: 25px;
+
+                display: none;
+                flex-direction: column;
+
+                background: var(--bg-secondary);
+
+                border: 1px solid var(--border);
+
+                border-radius: 20px;
+
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                min-height: 900px;
+
+                align-items: flex-end;
+
+                padding-bottom: 100px;
+            }
+
+            .hero-profile {
+                width: 130px;
+                height: 130px;
+
+                top: 120px;
+                right: 8%;
+            }
+
+            .hero h1 {
+                font-size: 58px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .product-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+
+        @media(max-width: 500px) {
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-profile {
+                width: 105px;
+                height: 105px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card {
+                padding: 28px;
+            }
+
+            .brand-banner {
+                padding: 55px 25px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="progress" id="progress"></div>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header id="header">
+
+        <nav class="nav">
+
+            <a href="#home" class="logo">ANUJ.</a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Collection</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+
+                <button
+                    class="theme-btn"
+                    id="themeBtn"
+                    aria-label="Change theme"
+                >
+                    ☾
+                </button>
+
+                <button
+                    class="menu-btn"
+                    id="menuBtn"
+                    aria-label="Open menu"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                Welcome to my world
+            </div>
+
+            <h1>
+                Build Your
+                <span>Own Story.</span>
+            </h1>
+
+            <p class="hero-description">
+                A personal brand built around creativity, ambition,
+                digital experiences and products worth discovering.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#products"
+                    class="btn btn-gold"
+                >
+                    Explore Collection →
+                </a>
+
+                <a
+                    href="#about"
+                    class="btn btn-outline"
+                >
+                    Discover More
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-profile">
+
+            <img
+                src="https://scontent.fktm1-1.fna.fbcdn.net/v/t39.30808-6/503683992_122108405360887063_6711386721118917552_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x1024&ctp=s1024x1024&_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=HVU38IeCt1UQ7kNvwEHR-dG&_nc_oc=AdoDe2x6fnIjH9_Hhl0HiYWmcrNCWXFjIIN57ljQxu6yGY_Loevoy1Ypwcw6cjwFt9M&_nc_zt=23&_nc_ht=scontent.fktm1-1.fna&_nc_gid=-os7eoJH6sBTQKHFKx0eJQ&_nc_ss=7b2a8&oh=00_AQJZD6QHkDr4t4RTEWxuJNzOrlMwahm_K2q50LT1v8iJCA&oe=6AAFDE94"
+                alt="Anuj profile"
+            >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+        <div class="section-head reveal">
+
+            <div class="eyebrow">
+                About
+            </div>
+
+            <h2>
+                More than a profile.
+                It's a brand.
+            </h2>
+
+            <p>
+                A premium digital space designed to present
+                personality, creativity, products and future
+                opportunities in one place.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-card reveal">
+
+                <h3>
+                    About Me
+                </h3>
+
+                <p>
+                    Welcome to my personal space. This website
+                    represents my journey, ideas, products and
+                    creative work.
+                </p>
+
+                <div class="contact-info">
+
+                    <a href="mailto:anujbist09@gmail.com">
+                        ✉ anujbist09@gmail.com
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/profile.php?id=61576611911103"
+                        target="_blank"
+                    >
+                        ● Facebook Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-card reveal">
+
+                <h3>
+                    The Vision
+                </h3>
+
+                <p>
+                    Create memorable experiences, build trust
+                    through quality and turn ideas into something
+                    people actually want to discover.
+                </p>
+
+                <div class="stats">
+
+                    <div class="stat">
+                        <strong>01</strong>
+                        <span>Personal Brand</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>∞</strong>
+                        <span>Ideas</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>24/7</strong>
+                        <span>Vision</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================== -->
+
+    <section
+        class="products-section"
+        id="products"
+    >
+
+        <div class="products-container">
+
+            <div class="section-head reveal">
+
+                <div class="eyebrow">
+                    The Collection
+                </div>
+
+                <h2>
+                    Discover something
+                    worth having.
+                </h2>
+
+                <p>
+                    Browse the collection and contact directly
+                    through WhatsApp when you're ready to buy.
+                </p>
+
+            </div>
+
+
+            <div class="product-controls">
+
+                <input
+                    type="text"
+                    class="search-box"
+                    id="search"
+                    placeholder="Search products..."
+                >
+
+                <span id="productCount">
+                    8 products
+                </span>
+
+            </div>
+
+
+            <div
+                class="product-grid"
+                id="productGrid"
+            >
+
+                <!-- PRODUCT 1 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Premium Collection"
+                    data-image="photo1.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo1.jpg"
+                            alt="Premium product"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Premium Collection
+                        </h3>
+
+                        <p>
+                            Signature piece
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Premium Collection')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRODUCT 2 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Signature Collection"
+                    data-image="photo2.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo2.jpg"
+                            alt="Signature product"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Signature Collection
+                        </h3>
+
+                        <p>
+                            Limited selection
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Signature Collection')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRODUCT 3 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Classic Edition"
+                    data-image="photo3.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo3.jpg"
+                            alt="Classic product"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Classic Edition
+                        </h3>
+
+                        <p>
+                            Timeless design
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Classic Edition')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRODUCT 4 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Exclusive Piece"
+                    data-image="photo4.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo4.jpg"
+                            alt="Exclusive product"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Exclusive Piece
+                        </h3>
+
+                        <p>
+                            Curated selection
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Exclusive Piece')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRODUCT 5 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Luxury Edition"
+                    data-image="photo5.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo5.jpg"
+                            alt="Luxury product"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Luxury Edition
+                        </h3>
+
+                        <p>
+                            Premium selection
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Luxury Edition')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRODUCT 6 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Modern Collection"
+                    data-image="photo6.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo6.jpg"
+                            alt="Modern product"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Modern Collection
+                        </h3>
+
+                        <p>
+                            Contemporary style
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Modern Collection')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRODUCT 7 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Limited Drop"
+                    data-image="photo7.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo7.jpg"
+                            alt="Limited product"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Limited Drop
+                        </h3>
+
+                        <p>
+                            Available for a limited time
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Limited Drop')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRODUCT 8 -->
+
+                <article
+                    class="product reveal"
+                    data-name="Signature Piece"
+                    data-image="photo8.jpg"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="photo8.jpg"
+                            alt="Signature piece"
+                            loading="lazy"
+                        >
+
+                        <div class="product-overlay">
+
+                            <button
+                                class="view-btn"
+                                onclick="openProduct(this)"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>
+                            Signature Piece
+                        </h3>
+
+                        <p>
+                            Made to stand out
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Contact
+                            </span>
+
+                            <button
+                                class="buy-btn"
+                                onclick="buyProduct('Signature Piece')"
+                            >
+                                Buy →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section id="contact">
+
+        <div class="brand-banner reveal">
+
+            <div class="eyebrow">
+                Let's Connect
+            </div>
+
+            <h2>
+                Your next purchase
+                starts with a message.
+            </h2>
+
+            <p>
+                Interested in something from the collection?
+                Contact directly through WhatsApp and discuss
+                availability, price and delivery.
+            </p>
+
+            <button
+                class="btn btn-gold"
+                onclick="buyProduct('General Inquiry')"
+            >
+                Chat on WhatsApp →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                ANUJ.
+            </div>
+
+            <div class="socials">
+
+                <a
+                    href="https://www.facebook.com/profile.php?id=61576611911103"
+                    target="_blank"
+                    aria-label="Facebook"
+                >
+                    f
+                </a>
+
+                <a
+                    href="mailto:anujbist09@gmail.com"
+                    aria-label="Email"
+                >
+                    @
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Anuj. All rights reserved.
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         PRODUCT MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="productModal"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="close-modal"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+            <img
+                id="modalImage"
+                class="modal-image"
+                src=""
+                alt=""
+            >
+
+            <div class="modal-content">
+
+                <h2 id="modalTitle">
+                    Product
+                </h2>
+
+                <p>
+                    Interested in this item?
+                    Contact directly through WhatsApp
+                    to check availability and details.
+                </p>
+
+                <button
+                    class="btn btn-gold"
+                    id="modalBuy"
+                >
+                    Buy on WhatsApp →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         BACK TO TOP
+    ========================== -->
+
+    <button
+        class="top-btn"
+        id="topBtn"
+    >
+        ↑
+    </button>
+
+
+
+    <script>
+
+        /* =================================
+           WHATSAPP NUMBER
+           REPLACE THIS NUMBER
+        ================================= */
+
+        const WHATSAPP_NUMBER = "97798XXXXXXXX";
+
+
+        /* =================================
+           MOBILE MENU
+        ================================= */
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", () => {
+
+            navLinks.classList.toggle("active");
+
+        });
+
+
+        /* =================================
+           CLOSE MOBILE MENU
+        ================================= */
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navLinks.classList.remove("active");
+
+            });
+
+        });
+
+
+        /* =================================
+           DARK / LIGHT MODE
+        ================================= */
+
+        const themeBtn = document.getElementById("themeBtn");
+
+        themeBtn.addEventListener("click", () => {
+
+            document.body.classList.toggle("light");
+
+            if(document.body.classList.contains("light")) {
+
+                themeBtn.textContent = "☀";
+
+                localStorage.setItem("theme", "light");
+
+            } else {
+
+                themeBtn.textContent = "☾";
+
+                localStorage.setItem("theme", "dark");
+
+            }
+
+        });
+
+
+        /* =================================
+           LOAD SAVED THEME
+        ================================= */
+
+        const savedTheme = localStorage.getItem("theme");
+
+        if(savedTheme === "light") {
+
+            document.body.classList.add("light");
+
+            themeBtn.textContent = "☀";
+
+        }
+
+
+        /* =================================
+           NAVBAR SCROLL
+        ================================= */
+
+        const header = document.getElementById("header");
+
+        window.addEventListener("scroll", () => {
+
+            if(window.scrollY > 50) {
+
+                header.classList.add("scrolled");
+
+            } else {
+
+                header.classList.remove("scrolled");
+
+            }
+
+        });
+
+
+        /* =================================
+           SCROLL PROGRESS
+        ================================= */
+
+        const progress = document.getElementById("progress");
+
+        window.addEventListener("scroll", () => {
+
+            const scrollTop = window.scrollY;
+
+            const documentHeight =
+                document.documentElement.scrollHeight -
+                document.documentElement.clientHeight;
+
+            const percentage =
+                (scrollTop / documentHeight) * 100;
+
+            progress.style.width = percentage + "%";
+
+        });
+
+
+        /* =================================
+           REVEAL ANIMATION
+        ================================= */
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if(entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+
+        /* =================================
+           SEARCH PRODUCTS
+        ================================= */
+
+        const search =
+            document.getElementById("search");
+
+        const products =
+            document.querySelectorAll(".product");
+
+        const productCount =
+            document.getElementById("productCount");
+
+
+        search.addEventListener("input", () => {
+
+            const value =
+                search.value.toLowerCase().trim();
+
+            let visible = 0;
+
+            products.forEach(product => {
+
+                const name =
+                    product.dataset.name.toLowerCase();
+
+                if(name.includes(value)) {
+
+                    product.style.display = "block";
+
+                    visible++;
+
+                } else {
+
+                    product.style.display = "none";
+
+                }
+
+            });
+
+            productCount.textContent =
+                `${visible} products`;
+
+        });
+
+
+        /* =================================
+           WHATSAPP PURCHASE
+        ================================= */
+
+        function buyProduct(productName) {
+
+            if(WHATSAPP_NUMBER.includes("X")) {
+
+                alert(
+                    "Please add the WhatsApp number in the JavaScript first."
+                );
+
+                return;
+
+            }
+
+            const message =
+                `Hello Anuj! I'm interested in "${productName}". Please send me the price and availability.`;
+
+            const url =
+                `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+            window.open(url, "_blank");
+
+        }
+
+
+        /* =================================
+           PRODUCT MODAL
+        ================================= */
+
+        const modal =
+            document.getElementById("productModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        const modalTitle =
+            document.getElementById("modalTitle");
+
+        const modalBuy =
+            document.getElementById("modalBuy");
+
+        const closeModal =
+            document.getElementById("closeModal");
+
+
+        let currentProduct = "";
+
+
+        function openProduct(button) {
+
+            const product =
+                button.closest(".product");
+
+            const image =
+                product.dataset.image;
+
+            const name =
+                product.dataset.name;
+
+            currentProduct = name;
+
+            modalImage.src = image;
+
+            modalImage.alt = name;
+
+            modalTitle.textContent = name;
+
+            modal.classList.add("active");
+
+        }
+
+
+        closeModal.addEventListener("click", () => {
+
+            modal.classList.remove("active");
+
+        });
+
+
+        modal.addEventListener("click", event => {
+
+            if(event.target === modal) {
+
+                modal.classList.remove("active");
+
+            }
+
+        });
+
+
+        modalBuy.addEventListener("click", () => {
+
+            buyProduct(currentProduct);
+
+        });
+
+
+        /* =================================
+           ESCAPE MODAL
+        ================================= */
+
+        document.addEventListener("keydown", event => {
+
+            if(event.key === "Escape") {
+
+                modal.classList.remove("active");
+
+            }
+
+        });
+
+
+        /* =================================
+           BACK TO TOP
+        ================================= */
+
+        const topBtn =
+            document.getElementById("topBtn");
+
+
+        window.addEventListener("scroll", () => {
+
+            if(window.scrollY > 500) {
+
+                topBtn.classList.add("show");
+
+            } else {
+
+                topBtn.classList.remove("show");
+
+            }
+        });
+        topBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+
+</body>
+</html>
